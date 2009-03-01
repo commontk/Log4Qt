@@ -6,7 +6,11 @@
  * author:      Martin Heinrich
  *
  * 
- * Copyright 2007 Martin Heinrich
+ * changes:		Sep 2008, Martin Heinrich:
+ * 				- Resolved compilation problem with Microsoft Visual Studio 2005
+ *
+ * 
+ * Copyright 2007 - 2008 Martin Heinrich
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -192,7 +196,7 @@ namespace Log4Qt
 	inline qint64 DateTime::toMilliSeconds() const
 	{   return (qint64)1000 * toTime_t() + time().msec();   }
 	
-	inline DateTime::DateTime DateTime::currentDateTime()
+	inline DateTime DateTime::currentDateTime()
 	{   return DateTime(QDateTime::currentDateTime());    }
 	
 	inline DateTime DateTime::fromMilliSeconds(qint64 milliSeconds)

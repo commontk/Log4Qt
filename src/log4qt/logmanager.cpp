@@ -5,8 +5,12 @@
  * created:     September 2007
  * author:      Martin Heinrich
  *
+ *
+ * changes:		Sep 2008, Martin Heinrich:
+ * 				- Resolved compilation problem with Microsoft Visual Studio 2005
+ *
  * 
- * Copyright 2007 Martin Heinrich
+ * Copyright 2007 - 2008 Martin Heinrich
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -129,7 +133,7 @@ namespace Log4Qt
         
         if (!mspInstance)
         {
-            QMutexLocker(singleton_guard());
+            QMutexLocker locker(singleton_guard()); 
             if (!mspInstance)
             {
                 mspInstance = new LogManager;

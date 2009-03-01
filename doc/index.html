@@ -50,6 +50,27 @@ To use Log4Qt within your software project include the Log4Qt source into your p
 	<b>0.1 - 29 December 2007</b><br>
     Initial Version
 	</li>
+	<li>
+	<b>0.2 - 30 January 2009</b><br>
+	Bug fixes and compatibility with Qt 4.4
+	<ul>
+		<li>
+		Added a compile time version check for the Qt version (log4qt.h)
+		</li>
+		<li>
+		Replaced usage of q_atomic_increment and q_atomic_decrement with QAtomicInt for compilation with Qt 4.4 (helpers/logobject.h)
+		</li>
+		<li>
+		Replaced usage of q_atomic_test_and_set_ptr with QAtomicPointer for compilation with Qt 4.4 (logger.h, helpers/classlogger.cpp, helpers/classlogger.h, helpers/initialisationhelper.h)
+		</li>
+		<li>
+		Fixed a problem with Qt 4.4 where QReadWriteLock is by default non-recursive (hierarchy.cpp, logger.cpp)
+		</li>
+		<li>
+		Resolved compilation problem with Microsoft Visual Studio 2005 (logmanager.cpp, helpers/datetime.cpp)
+		</li>
+	</ul>
+	</li>
 </ul>
 </p>
 
@@ -70,17 +91,17 @@ Log4Qt is licensed under the
 <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License Version 2.0</a>.
 </p>
 <p>
-Log4Qt requires the Trolltech Qt framework that is available under a dual license 
-(<a href="http://www.trolltech.com/products/qt/licensing.html">Qt licensing</a>).
+Log4Qt requires the Qt framework that is available under several licensing options
+(<a href="http://www.qtsoftware.com/products/appdev/licensing/licensing">Qt licensing</a>).
 The package is intended to be used under the 
-<a href="http://trolltech.com/products/qt/gplexception">Trolltech GPL Exception</a>.
+<a href="http://doc.trolltech.com/4.4/license-gpl-exceptions.html">Nokia Corporation Qt GPL Exception</a>.
 </p>
 
 <h2>Links</h2>
 <p>
 <ul>
-	<li>The <a href="http://jakarta.apache.org/log4cpp">log4j</a> project</li>
-	<li>The <a href="http://jakarta.apache.org/log4cpp">logcpp</a> project</li>
+	<li>The <a href="http://logging.apache.org/log4j">log4j</a> project</li>
+	<li>The <a href="http://logging.apache.org/log4cxx">logcxx</a> project</li>
 	<li>The <a href="http://log4cplus.sourceforge.net">log4cplus</a> project</li>
 	<li>The <a href="http://log4c.sourceforge.net">log4c</a> project</li>
 	<li><a href="http://www.stack.nl/~dimitri/doxygen">Doxygen</a></li>
