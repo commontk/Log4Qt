@@ -8,9 +8,12 @@
  *
  * changes:		Sep 2008, Martin Heinrich:
  * 				- Resolved compilation problem with Microsoft Visual Studio 2005
+ *              Feb 2009, Martin Heinrich
+ *              - Fixed VS 2008 unreferenced formal parameter warning by using 
+ *                Q_UNUSED in operator<<.
  *
- * 
- * Copyright 2007 - 2008 Martin Heinrich
+ *
+ * Copyright 2007 - 2009 Martin Heinrich
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -423,6 +426,7 @@ namespace Log4Qt
 #ifndef QT_NO_DEBUG_STREAM
 	QDebug operator<<(QDebug debug, const LogManager &rLogManager)
 	{
+		Q_UNUSED(rLogManager); // To avoid warning C4100 on VS 2008
 	    QList<Logger *> loggers = rLogManager.loggers();
 	    debug.nospace() << "LogManager("
 	        << "loggerrepository:" << *rLogManager.loggerRepository()

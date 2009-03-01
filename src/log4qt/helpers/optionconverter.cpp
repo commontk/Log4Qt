@@ -6,8 +6,13 @@
  * author:      Martin Heinrich
  *
  * 
- * Copyright 2007 Martin Heinrich
- * 
+ * changes      Feb 2009, Martin Heinrich
+ *              - Fixed a problem were OptionConverter::toBoolean would not
+ *                return the default value, if the conversion fails.
+ *
+ *
+ * Copyright 2007 - 2009 Martin Heinrich
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -160,7 +165,7 @@ namespace Log4Qt
         if (ok)
             return result;
         else
-            return false;
+            return default_value;
     }
     
     qint64 OptionConverter::toFileSize(const QString &rOption, 

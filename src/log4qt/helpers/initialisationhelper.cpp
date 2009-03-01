@@ -6,7 +6,12 @@
  * author:      Martin Heinrich
  *
  * 
- * Copyright 2007 Martin Heinrich
+ * changes      Feb 2009, Martin Heinrich
+ *              - Fixed VS 2008 unreferenced formal parameter warning by using 
+ *                Q_UNUSED in operator<<.
+ *
+ *
+ * Copyright 2007 - 2009 Martin Heinrich
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -162,6 +167,7 @@ namespace Log4Qt
 	QDebug operator<<(QDebug debug, 
 	                  const InitialisationHelper &rInitialisationHelper)
 	{
+		Q_UNUSED(rInitialisationHelper);
 		debug.nospace() << "InitialisationHelper("
 			<< "starttime:" << InitialisationHelper::startTime()
             << "(" << DateTime::fromMilliSeconds(InitialisationHelper::startTime()) << ")"

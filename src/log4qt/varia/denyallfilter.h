@@ -6,7 +6,12 @@
  * author:      Martin Heinrich
  *
  * 
- * Copyright 2007 Martin Heinrich
+ * changes      Feb 2009, Martin Heinrich
+ *              - Fixed a compile error on VS 2008 by using Q_UNUSED(&rEvent) 
+ *                instead of Q_UNUSED(rEvent)
+ *
+ *
+ * Copyright 2007 - 2009 Martin Heinrich
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,7 +93,7 @@ namespace Log4Qt
 	{}
 	
 	inline Filter::Decision DenyAllFilter::decide(const LoggingEvent &rEvent) const
-	{	Q_UNUSED(rEvent); return Filter::DENY;	}
+	{	Q_UNUSED(&rEvent); return Filter::DENY;	}
 	
 	
 } // namespace Log4Qt

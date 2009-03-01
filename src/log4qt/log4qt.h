@@ -10,6 +10,8 @@
  * 				- Added a compile time version check for the Qt version
  * 				Jan 2009, Martin Heinrich:
  * 				- Updated documentation and version information for version 0.2
+ * 				Feb 2009, Martin Heinrich:
+ * 				- Updated version information for version 0.3
  *
  *
  * Copyright 2007 - 2009 Martin Heinrich
@@ -51,7 +53,7 @@
  * - \ref Assumptions "Assumptions"
  *
  * \author Martin Heinrich
- * \version 0.2 (January 2009)
+ * \version 0.3 (January 2009)
  *
  */
 
@@ -554,7 +556,7 @@ namespace Log4Qt
      * \sa \ref Log4Qt::LOG4QT_VERSION "LOG4QT_VERSION",
      *     \ref Log4Qt::LogManager::version() "LogManager::version()"
      */
-    #define LOG4QT_VERSION_STR "0.2.0"
+    #define LOG4QT_VERSION_STR "0.3.0"
 
 	enum ErrorCode
 	{

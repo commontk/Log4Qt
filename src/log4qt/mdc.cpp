@@ -6,7 +6,12 @@
  * author:      Martin Heinrich
  *
  * 
- * Copyright 2007 Martin Heinrich
+ * changes      Feb 2009, Martin Heinrich
+ *              - Fixed unreferenced formal parameter warning by using
+ *                Q_UNUSED in operator<<.
+ *
+ *
+ * Copyright 2007 - 2009 Martin Heinrich
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,6 +103,7 @@ namespace Log4Qt
 #ifndef QT_NO_DEBUG_STREAM
 	QDebug operator<<(QDebug debug, const MDC &rMDC)
 	{
+		Q_UNUSED(rMDC); // To avoid warning C4100 on VS 2008
 	    debug.nospace() << "MDC(" 
 	        << "thread:" << QThread::currentThread()->objectName() << " "
 	        << "context:" << rMDC.context()

@@ -9,9 +9,12 @@
  * changes:		Sep 2008, Martin Heinrich:
  * 				- Replaced usage of q_atomic_increment and q_atomic_decrement
  * 				  with QAtomicInt.
+ *              Feb 2009, Martin Heinrich
+ *              - Fixed a problem where the pParent parameter of the constructor
+ *                was not passed on to the QObject constructor
  *
  *
- * Copyright 2007 - 2008 Martin Heinrich
+ * Copyright 2007 - 2009 Martin Heinrich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -172,7 +175,7 @@ namespace Log4Qt
 	 **************************************************************************/
 
 	inline LogObject::LogObject(QObject *pParent) :
-		QObject(),
+		QObject(pParent),
 		mReferenceCount()
 	{}
 
