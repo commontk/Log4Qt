@@ -31,14 +31,30 @@ To use Log4Qt within your software project include the Log4Qt source into your p
 	</li><li>
 	Unpack the Log4Qt package
 	</li><li>
-	Add to log4qt source to the Qt project file by adding the following line<br>
+	Add the log4qt source to the Qt project file by adding the following line<br>
 	<code>include(&lt;unpackdir&gt;/src/log4qt/log4qt.pri)</code>
 	</li><li>
-	Include the Log4Qt::Logger class to access a logger<br>
-	<code>include "log4qt/logger.h"</code>
+	Include the Logger class, a layout and an appender class to configure Log4Qt to generate output. The example uses the ConsoleAppender with a TTCCLayout<br>
+	<code>include "log4qt/consoleappender.h"</code><br>
+	<code>include "log4qt/logger.h"</code><br>
+	<code>include "log4qt/ttcclayout.h"</code>
 	</li><li>
-	Request a logger by either calling Log4Qt::Logger::logger or using
-	LOG4QT_DECLARE_QCLASS_LOGGER
+	Configure a logger to generate output. The example uses the root logger<br>
+	<code>// Create a layout</code><br>
+	<code>Log4Qt::LogManager::rootLogger();</code><br>
+	<code>TTCCLayout *p_layout = new TTCCLayout();</code><br>
+	<code>p_layout->setName(QLatin1String("My Layout"));</code><br>
+	<code>p_layout->activateOptions();</code><br>
+	<code>// Create an appender</code><br>
+	<code>ConsoleAppender *p_appender = new ConsoleAppender(p_layout, ConsoleAppender::STDOUT_TARGET);</code><br>
+	<code>p_appender->setName(QLatin1String("My Appender"));</code><br>
+	<code>p_appender->activateOptions();</code><br>
+	<code>// Set appender on root logger</code><br>
+	<code>Log4Qt::Logger::rootLogger()->setAppender(p_appender);</code>
+	</li><li>
+	Request a logger by either calling Log4Qt::Logger::logger or using LOG4QT_DECLARE_QCLASS_LOGGER<br>
+	<code color="green">// Request a logger and output "Hello World!"</code><br>
+	<code>Log4Qt::Logger::logger(QLatin1String("My Logger"))->info("Hello World!");</code><br>
    	</li>
 </ol>
 </p>
@@ -47,8 +63,22 @@ To use Log4Qt within your software project include the Log4Qt source into your p
 <p>
 <ul>
 	<li>
-	<b>0.1 - 29 December 2007</b><br>
-    Initial Version
+	<b>0.3 - 01 March 2009</b><br>
+	Bug fixes, compatibility with VS 2008 and Qt 4,5 RC1
+	<ul>
+		<li>
+		Fixed a problem where the pParent parameter of the constructor was not passed on to the QObject constructor (logobject.h)
+		</li>
+		<li>
+		Fixed a problem were OptionConverter::toBoolean would not return the default value, if the conversion fails (optionconverter.cpp)
+		</li>
+		<li>
+		Fixed a compile error on VS 2008 by using Q_UNUSED(&rEvent) instead of Q_UNUSED(rEvent) (varia/denyallfilter.h.h)
+		</li>
+		<li>
+		Fixed VS 2008 unreferenced formal parameter warning by using Q_UNUSED (logmanager.cpp, mdc.cpp, ndc.cpp, propertyconfigurator.cpp, helpers/initialisationhelper.cpp, helpers/patternformatter.cpp)
+		</li>
+	</ul>
 	</li>
 	<li>
 	<b>0.2 - 30 January 2009</b><br>
@@ -70,6 +100,10 @@ To use Log4Qt within your software project include the Log4Qt source into your p
 		Resolved compilation problem with Microsoft Visual Studio 2005 (logmanager.cpp, helpers/datetime.cpp)
 		</li>
 	</ul>
+	</li>
+	<li>
+	<b>0.1 - 29 December 2007</b><br>
+    Initial Version
 	</li>
 </ul>
 </p>
@@ -113,7 +147,7 @@ The package is intended to be used under the
 <table width="100%">
 	<tr >
 		<td><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=212208&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a></td>
-		<td align="right">29 December 2007, Martin Heinrich</td>
+		<td align="right">XX February 2009, Martin Heinrich</td>
 	</tr>
 </table>
 </p>
