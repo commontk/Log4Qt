@@ -123,7 +123,7 @@ add_library(${PROJECT_NAME}
 # See http://www.cmake.org/pipermail/cmake/2007-May/014350.html
 #
 IF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
-  SET_TARGET_PROPERTIES(log4qt PROPERTIES COMPILE_FLAGS "-fPIC")
+  SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-fPIC")
 ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
 
 #-----------------------------------------------------------------------------
