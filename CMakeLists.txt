@@ -41,6 +41,8 @@ set(BUILD_SHARED_LIBS FALSE)
 # Qt
 set(minimum_required_qt_version "4.6")
 
+find_package(Qt4)
+
 if(QT4_FOUND)
   set(found_qt_version ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH})
   
