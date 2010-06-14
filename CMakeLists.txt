@@ -28,7 +28,7 @@ FOREACH(policy ${project_policies})
 ENDFOREACH()
 
 #-----------------------------------------------------------------------------
-project(log4qt)
+project(Log4Qt)
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
@@ -50,21 +50,21 @@ endif()
 #-----------------------------------------------------------------------------
 # Sources
 
-FILE(GLOB LOG4_HEADERS 
+file(GLOB LOG4QT_HEADERS
   src/log4qt/*.h
   src/log4qt/varia/*.h
   src/log4qt/spi/*.h
   )
-SOURCE_GROUP("log4qt\\Header Files" FILES ${LOG4_HEADERS})
-FILE(GLOB LOG4_SOURCE 
+
+file(GLOB LOG4QT_SOURCE 
   src/log4qt/*.cpp
   src/log4qt/helpers/*.cpp
   src/log4qt/varia/*.cpp
   src/log4qt/spi/*.cpp
   )
-SOURCE_GROUP("log4qt\\Source Files" FILES ${LOG4_SOURCE})
 
-set(MOCFiles 
+# Headers that should run through moc
+set(LOG4QT_MOC_SRCS
   src/log4qt/appenderskeleton.h
   src/log4qt/appender.h
   src/log4qt/layout.h
@@ -92,13 +92,21 @@ set(MOCFiles
 #-----------------------------------------------------------------------------
 # Do wrapping
 
-qt4_wrap_cpp ( MOCSource ${MOCFiles} )
+qt4_wrap_cpp(LOG4QT_MOC_CXX ${LOG4QT_MOC_SRCS})
 
+SOURCE_GROUP("Generated" FILES
+  ${LOG4QT_MOC_CXX}
+  )
+    
 #-----------------------------------------------------------------------------
 # Build the library
 
-include_directories ( ${CMAKE_CURRENT_SOURCE_DIR}/src )
-add_library(log4qt ${LOG4_SOURCE} ${MOCSource})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+add_library(${PROJECT_NAME}
+  ${LOG4QT_SOURCE} 
+  ${LOG4QT_MOC_CXX}
+  )
 
 #-----------------------------------------------------------------------------
 #
@@ -120,4 +128,4 @@ foreach(dir "" helpers spi varia)
     DESTINATION include/log4qt/${dir} COMPONENT Development )
 endforeach()
 
-install(TARGETS log4qt DESTINATION lib COMPONENT Development )
+install(TARGETS ${PROJECT_NAME} DESTINATION lib COMPONENT Development )
