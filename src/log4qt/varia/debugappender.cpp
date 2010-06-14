@@ -89,7 +89,7 @@ namespace Log4Qt
 	        OutputDebugStringA(message.toLocal8Bit().data());
 	    });
 #else
-	    fprintf(stderr, message.toLocal8Bit().data());
+	    fprintf(stderr, "%s", message.toLocal8Bit().data());
 	    fflush(stderr);
 #endif
 	}
