@@ -38,6 +38,18 @@ project(Log4Qt)
 set(BUILD_SHARED_LIBS FALSE)
 
 #-----------------------------------------------------------------------------
+# Set symbol visibility Flags
+#
+IF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  SET(VISIBILITY_CXX_FLAGS "-fvisibility=hidden -fvisibility-inlines-hidden")
+ENDIF()
+
+#-----------------------------------------------------------------------------
+# Update C/CXX Flags
+#
+SET(CMAKE_CXX_FLAGS "${VISIBILITY_CXX_FLAGS} ${CMAKE_CXX_FLAGS}" CACHE STRING "CMake CXX Flags" FORCE)
+
+#-----------------------------------------------------------------------------
 # Qt
 set(minimum_required_qt_version "4.6")
 
