@@ -96,13 +96,20 @@ namespace Log4Qt
 	}
 	
 	
-    void RollingFileAppender::setMaxFileSize(const QString &rMaxFileSize)
-    {
-        bool ok;
-        qint64 max_file_size = OptionConverter::toFileSize(rMaxFileSize, &ok);
-        if (ok)
-            setMaximumFileSize(max_file_size);
-    }
+	QString RollingFileAppender::maxFileSize()
+  {
+    QString maximum_file_size_as_string;
+    maximum_file_size_as_string.setNum(mMaximumFileSize);
+    return maximum_file_size_as_string;
+  }
+	  
+  void RollingFileAppender::setMaxFileSize(const QString &rMaxFileSize)
+  {
+      bool ok;
+      qint64 max_file_size = OptionConverter::toFileSize(rMaxFileSize, &ok);
+      if (ok)
+          setMaximumFileSize(max_file_size);
+  }
 
 	
 	void RollingFileAppender::append(const LoggingEvent &rEvent)
