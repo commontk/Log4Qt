@@ -47,7 +47,7 @@ ENDIF()
 #-----------------------------------------------------------------------------
 # Update C/CXX Flags
 #
-SET(CMAKE_CXX_FLAGS "${VISIBILITY_CXX_FLAGS} ${CMAKE_CXX_FLAGS}" CACHE STRING "CMake CXX Flags" FORCE)
+SET(CMAKE_CXX_FLAGS "${VISIBILITY_CXX_FLAGS} ${CMAKE_CXX_FLAGS}" CACHE STRING "CMake CXX Flags")
 
 #-----------------------------------------------------------------------------
 # Qt
@@ -67,20 +67,23 @@ else()
   message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
 endif()
 
+
+# --------------------------------------------------------------------------
+# Include dirs
+set(log4qt_includes
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_BINARY_DIR}/src
+  )
+include_directories(${log4qt_includes})
+
 #-----------------------------------------------------------------------------
 # Sources
 
-file(GLOB LOG4QT_HEADERS
-  src/log4qt/*.h
-  src/log4qt/varia/*.h
-  src/log4qt/spi/*.h
-  )
-
-file(GLOB LOG4QT_SOURCE 
+file(GLOB LOG4QT_SOURCE
   src/log4qt/*.cpp
   src/log4qt/helpers/*.cpp
-  src/log4qt/varia/*.cpp
   src/log4qt/spi/*.cpp
+  src/log4qt/varia/*.cpp
   )
 
 # Headers that should run through moc
@@ -114,14 +117,12 @@ set(LOG4QT_MOC_SRCS
 
 qt4_wrap_cpp(LOG4QT_MOC_CXX ${LOG4QT_MOC_SRCS})
 
-SOURCE_GROUP("Generated" FILES
+source_group("Generated" FILES
   ${LOG4QT_MOC_CXX}
   )
     
 #-----------------------------------------------------------------------------
 # Build the library
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 add_library(${PROJECT_NAME}
   ${LOG4QT_SOURCE} 
@@ -140,7 +141,7 @@ ENDIF( CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" )
 
 #-----------------------------------------------------------------------------
 # Install rules
-foreach(dir "" helpers spi varia)
+foreach(dir . helpers spi varia)
   file(GLOB InstallHeaders 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/log4qt/${dir}/*.h" 
     )
