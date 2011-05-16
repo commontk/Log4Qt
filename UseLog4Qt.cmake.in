@@ -1,0 +1,13 @@
+#
+# This module is provided as Log4Qt_USE_FILE by Log4QtConfig.cmake.  It can
+# be INCLUDED in a project to load the needed compiler and linker
+# settings to use Log4Qt.
+#
+
+IF(NOT Log4Qt_USE_FILE_INCLUDED)
+  SET(Log4Qt_USE_FILE_INCLUDED 1)
+  
+  # Add include directories needed to use Log4Qt.
+  INCLUDE_DIRECTORIES(${Log4Qt_INCLUDE_DIRS})
+  
+ENDIF()

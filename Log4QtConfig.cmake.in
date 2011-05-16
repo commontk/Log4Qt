@@ -1,0 +1,15 @@
+
+
+SET(Log4Qt_LIBRARY_DIRS "@Log4Qt_LIBRARY_DIRS_CONFIG@")
+
+SET(Log4Qt_LIBRARIES Log4Qt)
+
+SET(Log4Qt_INCLUDE_DIRS "@Log4Qt_INCLUDE_DIRS_CONFIG@")
+
+# The location of the UseLog4Qt.cmake file.
+set(Log4Qt_USE_FILE "@Log4Qt_USE_FILE_CONFIG@")
+
+# The Log4Qt targets file.
+IF(EXISTS "@Log4Qt_TARGETS_FILE@")
+  INCLUDE("@Log4Qt_TARGETS_FILE@")
+ENDIF()
