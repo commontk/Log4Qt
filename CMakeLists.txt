@@ -111,10 +111,6 @@ add_library(${PROJECT_NAME}
   ${LOG4QT_SOURCE} 
   ${LOG4QT_MOC_CXX}
   )
-  
-# --------------------------------------------------------------------------
-# Export target
-EXPORT(TARGETS ${PROJECT_NAME} FILE ${Log4Qt_BINARY_DIR}/Log4QtTargets.cmake)
 
 #-----------------------------------------------------------------------------
 #
