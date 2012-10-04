@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 2.8)
 project(Log4Qt)
 #-----------------------------------------------------------------------------
 
+include(CTestUseLaunchers OPTIONAL)
+
 #-----------------------------------------------------------------------------
 # Output directories.
 #
